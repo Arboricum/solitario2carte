@@ -1,0 +1,54 @@
+mappa script
+
+Solitario1.1:
+
+inizia()
+attivato da botton starta che sparisce
+mescola
+calcolo1() + calcolo2()
+inizia1()
+
+inizia1()
+attivata da eventlist di inizia()
+fa comparire carte e pv
+aggiunge eventlist per gioco1() su carteC
+
+gioco1()
+attivata da inizia1, da gioco1() e da reiniziaMazzo1()
+contX + 2 -> test per file insert.js
+aggiunge eventlist per gioco2() su carteC
+-se contX <= lista allora inserisci() o inserisci2()
+se cont > lista allora inserisci e reiniziaMazzo() o inserisci2() e reiniziaMazzo()
+
+gioco(2)
+chiamata da gioco1()
+aggiorna la posizione della carta (contG1 e contG2 +2)
+richiama gioco1()
+
+reiniziaMazzo()
+mostra che mazzo finito e chiama reiniziaMazzo1()
+
+reiniziaMazzo1()
+chiamata da prec
+mostra dorso carteC
+resetta i contatori
+chiama gioco1() e aggLista()
+
+aggLista()
+aggiorna la lista togliendo le carte inserite
+
+mescolaMazzo()
+rimescola il mazzo
+
+Insert.js:
+
+inserisci()
+inserisce le carte
+aggiorna i contatori pv
+
+inserisci2()
+
+inserisci3()
+
+controllaCarta()
+

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Html game">
+<meta name="keywords" content="html game, html game for musician, music game, music, music videogame">
+<meta name="author" content="Arboricum Sandorsi">
+
+<meta property="og:title" content="Solitario delle due carte">
+<meta property="og:description" content="Gioco solitario delle due carte">
+<meta property="og:image" content="carte/AssoQ.png">
+<meta property="og:url" content="carte/AssoQ.png">
+
+<title>Solitario2carte</title>
+<style>
+
+.contorno {
+margin-left: auto;
+margin-right: auto;
+position: relative;
+border: solid 2px black;
+width: 1150px;
+height: 650px;
+text-align: center;
+}
+.contorno1 {
+position: relative;
+margin-left: auto;
+margin-right: auto;
+border: solid 2px black;
+width: 1150px;
+height: 650px;
+background-color: green;
+text-align: center;
+}
+.contorno2 {
+display: none;
+position: relative;
+margin-top: -10px;
+margin-left: auto;
+margin-right: auto;
+height: 550px;
+width: 800px;
+text-align: center;
+}
+#win {
+display: none;
+position: relative;
+margin-top: 30px;
+margin-left: auto;
+margin-right: auto;
+background-color: lightgreen;
+height: 120px;
+width: 500px;
+border: solid 2px black;
+border-radius: 8px;
+}
+.pv {
+display: none;
+position: absolute;
+top: 30px;
+left: 72px;
+border: solid 1px black;
+height: 220px;
+width: 110px;
+background-color: green;
+}
+.pv1 {
+left: 72px;
+border-radius: 5px;
+}
+.pv2 {
+left: 254px;
+border-radius: 5px;
+}
+.pv3 {
+left: 436px;
+border-radius: 5px;
+}
+.pv4 {
+left: 618px;
+border-radius: 5px;
+}
+.pr {
+position: absolute;
+width: 150px;
+height: 20px;
+text-align: left;
+}
+.mazzo {
+display: none;
+position: absolute;
+bottom: 15px;
+height: 220px;
+width: 110px;
+border-radius: 5px;
+background-color: green;
+cursor: pointer;
+}
+.mazzoCP {
+border: solid 1px black;
+left: 20px;
+}
+.mazzoG1 {
+left: 160px;
+z-index: 1;
+}
+.mazzoG1:hover {
+left: 160px;
+z-index: 3;
+cursor: default;
+}
+.mazzoG1b {
+left: 160px;
+z-index: 3;
+cursor: pointer;
+}
+.mazzoG2 {
+left: 200px;
+z-index: 2;
+}
+.carta {
+border-radius: 7px;
+width: 110px;
+height: 220px;
+}
+#start {
+margin-left: auto;
+margin-right: auto;
+margin-top: -20px;
+border: solid 1px black;
+background-color: blue;
+color: white;
+padding: 3px;
+width: 40px;
+cursor: pointer;
+}
+#start:hover {
+background-color: lightblue;
+}
+#start1 {
+margin-left: auto;
+margin-right: auto;
+margin-top: -20px;
+border: solid 1px black;
+background-color: blue;
+color: white;
+padding: 3px;
+width: 120px;
+cursor: pointer;
+}
+#start1:hover {
+background-color: lightblue;
+}
+#fine {
+display: none;
+margin-left: auto;
+margin-right: auto;
+margin-top: -75px;
+border: solid 1px black;
+background-color: blue;
+color: white;
+padding: 3px;
+width: 120px;
+cursor: pointer;
+}
+#fine:hover {
+background-color: lightblue;
+}
+.scommetti {
+margin-left: auto;
+margin-right: auto;
+display: none;
+height: 300px;
+width: 280px;
+background-color: lightgreen;
+z-index: 3;
+}
+.scom {
+margin-left: auto;
+margin-right: auto;
+margin-top: -5px;
+margin-bottom: -15px;
+border: solid 1px black;
+background-color: blue;
+color: white;
+padding: 3px;
+width: 55px;
+cursor: pointer;
+}
+.scom:hover {
+background-color: lightblue;
+}
+.scom1 {
+margin-left: auto;
+margin-right: auto;
+margin-top: -5px;
+margin-bottom: -15px;
+border: solid 1px black;
+background-color: lightblue;
+color: white;
+padding: 3px;
+width: 55px;
+}
+.Coppe {
+font-size: 90%;
+}
+.Ori {
+font-size: 90%;
+}
+.Spade {
+font-size: 90%;
+}
+.Bastoni {
+font-size: 90%;
+}
+.mescolaC {
+position: absolute;
+opacity: 0.5;
+left: 10px;
+bottom: 60px;
+border: solid 1px black;
+background-color: blue;
+color: white;
+padding: 3px;
+width: 60px;
+}
+.mescolaCok {
+position: absolute;
+left: 10px;
+bottom: 60px;
+border: solid 1px black;
+background-color: blue;
+color: white;
+padding: 3px;
+width: 60px;
+cursor: pointer;
+}
+.mescolaCok:hover {
+background-color: lightblue;
+}
+#mischia {
+display: none;
+text-align: left;
+}
+#freccia {
+position: absolute;
+display: none;
+left: 10px;
+bottom: 90px;
+width: 60px;
+}
+#giocate {
+position: absolute;
+display: none;
+left: 10px;
+top: 240px;
+}
+#vinte {
+position: absolute;
+display: none;
+left: 10px;
+top: 260px;
+}
+#svinte {
+position: absolute;
+display: none;
+left: 10px;
+top: 280px;
+}
+#puntPar {
+position: absolute;
+display: none;
+left: 10px;
+top: 300px;
+}
+#puntTot {
+position: absolute;
+display: none;
+left: 10px;
+top: 320px;
+}
+#statRes {
+position: absolute;
+display: none;
+left: 10px;
+top: 360px;
+cursor: pointer;
+}
+#istruzioniD {
+position: absolute;
+left: 0px;
+top: 0px;
+width: 77px;
+cursor: pointer;
+}
+#musica {
+position: absolute;
+left: 0px;
+top: 20px;
+cursor: pointer;
+}
+#games {
+position: absolute;
+right: 0px;
+top: 0px;
+cursor: pointer;
+}
+
+</style>
+<body onload='musicaOn()'>
+<div class="contorno">
+  <div class="contorno1">
+<h1 id="titolo">Solitario delle due carte</h1>
+<button id='istruzioniD' onclick='istruzioni()'>Istruzioni</button>
+<p id="start">Gioca<p>
+<div id="win"></div>
+<p id="giocate"></p>
+<p id="vinte"></p>
+<p id="svinte"></p>
+<p id="puntPar"></p>
+<p id="puntTot"></p>
+<button id="statRes" onclick='azzera()'>Azzera statistiche</button>
+<button id="musica">Musica off</button>
+<button id="games" onclick='giochi()'>Giochi</button>
+
+<div class='scommetti'>
+<h3 id='pronoTitle'>Quale seme finirà per primo?</h3>
+<button id='prono1' class='scom' value='Coppe'>Coppe</button><p class='Coppe'>Pronostico: <p>
+<button id='prono2' class='scom' value='Ori'>Ori</button><p class='Ori'>Pronostico: <p>
+<button id='prono3' class='scom' value='Spade'>Spade</button><p class='Spade'>Pronostico: <p>
+<button id='prono4' class='scom' value='Bastoni'>Bastoni</button><p class='Bastoni'>Pronostico: <p>
+</div>
+
+    <div class="contorno2">
+<div class="pv pv1"><p class='mc' style='color:darkred'>Coppe</p><img id="mCoppe" src="carte/emptyCard.png" class="carta" alt="carta"></div><div class='pv1 pr'></div>
+<div class="pv pv2"><p class='mc' style='color:yellow'>Ori</p><img id="mOri" src="carte/emptyCard.png" class="carta" alt="carta"></div><div class='pv2 pr'></div>
+<div class="pv pv3"><p class='mc' style='color:lightblue'>Spade</p><img id="mSpade" src="carte/emptyCard.png" class="carta" alt="carta"></div><div class='pv3 pr'></div>
+<div class="pv pv4"><p class='mc' style='color:chocolate'>Bastoni</p><img id="mBast" src="carte/emptyCard.png" class="carta" alt="carta"></div><div class='pv4 pr'></div>
+<div class="mazzo mazzoCP" id="c1"><img id="mCP" src="carte/emptyCard.png" class="carta"></div>
+<div class="mazzo mazzoG1" id="c2"><img id="mG1" src="carte/emptyCard.png" class="carta"></div>
+<div class="mazzo mazzoG2" id="c3"><img id="mG2" src="carte/emptyCard.png" class="carta"></div>
+    </div>
+<div id='freccia'><img id='flashStop' src='carte/freccia.png' width='50px' height='50px'></div>
+<div id='mischia'><p class="mescolaC" id='mescolaId'>Mischia<p><br><br><p style='position:absolute;left:10px;bottom:20px'>Mischia il mazzo<br> per 40 punti</p></div>
+<p id="fine">Termina partita<p>
+  </div>
+</div>
+
+<audio id="mescola"><source src="" type="audio/mpeg"></audio>
+<audio id="msfondo"><source src="suoni/sfondo.mp3" type="audio/mpeg"></audio>
+</body>
+
+<script src="js/prono.js"></script>
+<script src="js/mischiaSol.js"></script>
+<script src="js/insert.js"></script>
+<script src="js/win.js"></script>
+<script src="js/cookies.js"></script>
+<script>
+document.getElementById("start").addEventListener("click", preGioco);
+document.getElementById('prono1').addEventListener('click', scommessa1);
+document.getElementById('prono2').addEventListener('click', scommessa2);
+document.getElementById('prono3').addEventListener('click', scommessa3);
+document.getElementById('prono4').addEventListener('click', scommessa4);
+
+var audio1 = document.getElementById("mescola");
+var carteAll = document.getElementsByClassName("mazzo");
+var carteC = document.getElementById("mCP");
+var cartaG1 = document.getElementById("mG1");
+var cartaG2 = document.getElementById("mG2");
+var cartapv1 = document.getElementById("mCoppe");
+var cartapv2 = document.getElementById("mOri");
+var cartapv3 = document.getElementById("mSpade");
+var cartapv4 = document.getElementById("mBast");
+var contG1 = 0;
+var contG1a = contG1;
+var contG2 = 1;
+var contpv1 = 0;
+var contpv2 = 0;
+var contpv3 = 0;
+var contpv4 = 0;
+var contX = 1;
+var listaProv = [];
+
+var contPos = 1;
+var contPosCol = "";
+var carteInserite = 0;
+
+var mesc = 0;
+
+var flash;
+var flash1;
+
+var contGiocate;
+var contaVittorie;
+var contPuntiPar = 0;
+var contPuntiTot;
+
+
+function inizia() {
+document.getElementById("mescola").addEventListener("ended", inizia1);
+document.getElementsByClassName('scommetti')[0].style.height = '25px';
+document.getElementById('pronoTitle').innerHTML = 'Mescolo il mazzo';
+document.getElementById('prono1').style.display = 'none';
+document.getElementById('prono2').style.display = 'none';
+document.getElementById('prono3').style.display = 'none';
+document.getElementById('prono4').style.display = 'none';
+document.getElementsByClassName('Coppe')[0].style.display = 'none';
+document.getElementsByClassName('Ori')[0].style.display = 'none';
+document.getElementsByClassName('Spade')[0].style.display = 'none';
+document.getElementsByClassName('Bastoni')[0].style.display = 'none';
+audio1.src = "suoni/mescola.mp3";
+audio1.play();
+calcolo1();
+}
+
+function inizia1() {
+var x;
+var xx;
+var y = document.getElementsByClassName("pv");
+aggCkIni();
+document.getElementById("mescola").removeEventListener("ended", inizia1);
+document.getElementsByClassName('scommetti')[0].style.display = 'none';
+carteAll[0].style.display = "block";
+preGioco1();
+carteC.src = "carte/dorsom.jpg";
+carteC.addEventListener("click", gioco1);
+document.getElementById("mischia").style.display = "block";
+document.getElementById("fine").addEventListener('click', fineGame);
+document.getElementById("fine").style.display = "block";
+document.getElementById("giocate").innerHTML = "Partite giocate: " + contGiocate;
+document.getElementById("giocate").style.display = "block";
+document.getElementById("vinte").innerHTML = "Partite vinte: " + contaVittorie;
+document.getElementById("vinte").style.display = "block";
+document.getElementById("svinte").innerHTML = "Pronostici esatti: " + scomVinte;
+document.getElementById("svinte").style.display = "block";
+document.getElementById("puntPar").innerHTML = "Punti in questa partita: " + contPuntiPar;
+document.getElementById("puntPar").style.display = "block";
+document.getElementById("puntTot").innerHTML = "Punti totali: " + contPuntiTot;
+document.getElementById("puntTot").style.display = "block";
+document.getElementById("statRes").style.display = "block";
+document.getElementsByClassName("contorno2")[0].style.display = "block";
+contGiocate += 1;
+setCookie("giocate", contGiocate,365);
+  for (x = 0; x < y.length; x++) {
+  y[x].style.display = "block";
+  }
+}
+
+function gioco1() {
+contX += 2;
+flash = 0;
+carteC.removeEventListener("click", gioco1);
+carteC.addEventListener("click", gioco2);
+cartaG1.removeEventListener("click", inserisci);
+cartaG1.removeEventListener("click", inserisci2);
+cartaG1.removeEventListener("click", inserisci3);
+cartaG1.src = lista[contG1][2];
+  if (contX <= lista.length) {
+     if (lista[contG2] != undefined) {
+     cartaG2.src = lista[contG2][2];
+     cartaG2.addEventListener("click", inserisci);
+     } else if (lista[contG2] == undefined) {
+     cartaG2.src = "";
+     document.getElementById("c2").classList.remove("mazzoG1");
+     document.getElementById("c2").classList.add("mazzoG1b");
+     cartaG1.addEventListener("click", inserisci2);
+     }
+  } else if (contX > lista.length) {
+     if (lista[contG2] != undefined) {
+     cartaG2.src = lista[contG2][2];
+     cartaG2.addEventListener("click", inserisci);
+     carteC.removeEventListener("click", gioco2);
+     carteC.addEventListener("click", reiniziaMazzo);
+     } else if (lista[contG2] == undefined) {
+     cartaG2.src = "";
+     document.getElementById("c2").classList.remove("mazzoG1");
+     document.getElementById("c2").classList.add("mazzoG1b");
+     cartaG1.addEventListener("click", inserisci2);
+     carteC.removeEventListener("click", gioco2);
+     carteC.addEventListener("click", reiniziaMazzo);
+     }
+  }
+carteAll[1].style.display = "block";
+carteAll[2].style.display = "block";
+}
+
+function gioco2() {
+contG1 += 2;
+contG2 += 2;
+document.getElementById("c2").classList.remove("mazzoG1b");
+document.getElementById("c2").classList.add("mazzoG1");
+cartaG1.removeEventListener("click", inserisci);
+cartaG1.removeEventListener("click", inserisci2);
+cartaG1.removeEventListener("click", inserisci3);
+contG1a = contG1;
+gioco1();
+}
+
+function reiniziaMazzo() {
+carteC.src = "carte/fineM.png";
+carteC.removeEventListener("click", reiniziaMazzo);
+carteC.addEventListener("click", reiniziaMazzo1);
+okMescola();
+}
+
+function reiniziaMazzo1() {
+carteC.src = "carte/dorsom.jpg";
+frecciaStop();
+aggLista();
+contG1 = 0;
+contG2 = 1;
+contG1a = contG1;
+contX = 1;
+  if (mesc == 1) {
+  document.getElementById('mescolaId').classList.remove('mescolaCok');
+  document.getElementById('mescolaId').removeEventListener('click', mescolaMazzo);
+  document.getElementById('mescolaId').classList.add('mescolaC');
+  mesc = 0;
+  }
+document.getElementById("c2").classList.remove("mazzoG1b");
+document.getElementById("c2").classList.add("mazzoG1");
+cartaG1.removeEventListener("click", inserisci);
+cartaG1.removeEventListener("click", inserisci2);
+cartaG1.removeEventListener("click", inserisci3);
+carteC.removeEventListener("click", reiniziaMazzo1);
+gioco1();
+}
+
+function aggLista() {
+var tt = 0;
+var hh = 0;
+var x = '';
+listaProv.sort(function(a, b){return a - b});
+  for (tt = 0; tt < listaProv.length; tt++) {
+  x += lista.splice(listaProv[tt]-hh,1);
+  hh+=1;
+  }
+listaProv = [];
+}
+
+function okMescola() {
+  if (contPuntiTot >= 40) {
+  frecciaFlash();
+  document.getElementById('mescolaId').addEventListener('click', mescolaMazzo);
+  document.getElementById('mescolaId').classList.remove('mescolaC');
+  document.getElementById('mescolaId').classList.add('mescolaCok');
+  mesc = 1;
+  }  
+}
+
+function mescolaMazzo() {
+frecciaStop();
+contPuntiTot -= 40;
+document.getElementById("puntTot").innerHTML = "Punti totali: " + contPuntiTot;
+aggCk();
+cartaG2.src = '';
+cartaG1.src = '';
+document.getElementById("mescola").addEventListener("ended", trans);
+carteC.src = "carte/fineX.png";
+audio1.src = "suoni/mescolab.mp3";
+audio1.play();
+cartaG1.removeEventListener("click", inserisci);
+cartaG1.removeEventListener("click", inserisci2);
+cartaG1.removeEventListener("click", inserisci3);
+carteC.removeEventListener("click", reiniziaMazzo1);
+aggLista();
+lista.sort(function(a, b){return 0.5 - Math.random()});
+document.getElementById('mescolaId').classList.remove('mescolaCok');
+document.getElementById('mescolaId').removeEventListener('click', mescolaMazzo);
+document.getElementById('mescolaId').classList.add('mescolaC');
+mesc = 0;
+}
+
+function trans() {
+carteC.src = "carte/fineM.png";
+carteC.addEventListener("click", reiniziaMazzo1);
+document.getElementById("mescola").removeEventListener("ended", trans);
+}
+
+function frecciaFlash() {
+document.getElementById('freccia').style.display = 'block';
+flash = setTimeout(frecciaFlash1, 200);
+}
+function frecciaFlash1() {
+document.getElementById('freccia').style.display = 'none';
+flash1 = setTimeout(frecciaFlash, 200);
+}
+function frecciaStop() {
+clearTimeout(flash);
+clearTimeout(flash1);
+document.getElementById('freccia').style.display = 'none';
+}
+
+function azzera() {
+scomVinte = 0;
+contPuntiTot = 0;
+contaVittorie = 0;
+contGiocate = 0;
+setCookie("vittorieS", scomVinte,365);
+setCookie("puntiPartT", contPuntiTot,365);
+setCookie("vittorieG", contaVittorie,365);
+setCookie("giocate", contGiocate,365);
+document.getElementById("giocate").innerHTML = "Partite giocate: " + contGiocate;
+document.getElementById("vinte").innerHTML = "Partite vinte: " + contaVittorie;
+document.getElementById("svinte").innerHTML = "Pronostici esatti: " + scomVinte;
+document.getElementById("puntTot").innerHTML = "Punti totali: " + contPuntiTot;
+}
+
+function istruzioni() {
+var istr = window.open("", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=500,height=250");
+istr.document.write("<p style='background-color:lightgreen'><b>Scopo del gioco:</b><br>mettere in sequenza tutti i semi dall'Asso al Re.<br><b>Svolgimento:</b><br>ogni volta che clicchi sulle carte coperte ti verranno mostrate le prime due carte dall'alto del mazzo, fino ad esaurimento dello stesso. Clicca sulla carta in evidenza per collocarla, se possibile, nel mazzo scoperto del suo seme; se riesci potrai collocare anche la seconda. Se collochi anche la seconda potrai collocare, nell'ordine di uscita, anche le precedenti. Ogni volta che collochi una carta guadagni un punto. Se completi un seme guadagni 5 punti. Se completi tutti i semi, oltre ai 5 punti per ogni seme completato, guadagni altri 20 punti.<br><b>Pronostici:</b><br>all'inizio del gioco ti verrà chiesto di pronosticare l'ordine di completamento per ogni seme. Per ogni pronostico esatto ti verranno assegnati 10 punti. Se tutti e quattro i pronostici saranno esatti, guadagnerai ulteriori 40 punti.<br><b>Punti:</b><br>all'esaurimento del mazzo, se non sarai riuscito a collocare alcuna carta, potrai utilizzare i punti accumulati per rimescolare il mazzo per cercare di completare il gioco.<br>Buona fortuna!</p>");
+}
+
+function musicaOn() {
+document.getElementById("msfondo").play();
+document.getElementById("msfondo").volume = 0.5;
+document.getElementById("msfondo").addEventListener('ended', musicaOn);
+document.getElementById("musica").innerHTML = 'Musica off';
+document.getElementById("musica").removeEventListener('click', musicaOn);
+document.getElementById("musica").addEventListener('click', musicaOff);
+}
+function musicaOff() {
+document.getElementById("msfondo").pause();
+document.getElementById("msfondo").load();
+document.getElementById("musica").innerHTML = 'Musica on';
+document.getElementById("musica").removeEventListener('click', musicaOff);
+document.getElementById("musica").addEventListener('click', musicaOn);
+}
+
+function giochi() {
+window.open("http://yaripiras.it/portfolio/soft","_self");
+}
+
+</script>
+
+
+
+</html>

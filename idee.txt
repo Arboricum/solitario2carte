@@ -1,0 +1,16 @@
+800 px larghezza
+110 carta * 4 = 440
+800 - 440 = 360
+360/5 (3 interni e 2 est) = 72
+m1: 72
+m2: 72+110+72=254
+m3: 254+110+72=436
+m4: 436+110+72=618
+
+
+<script>
+
+function mescolaMazzo() {
+  lista.sort(function(a, b){return 0.5 - Math.random()});
+}
+</script>
